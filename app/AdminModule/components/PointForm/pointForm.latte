@@ -77,7 +77,9 @@
 			</div>
 
 			<div class="col-6 text-center">
-				{if $point != null}<img src="{$point->getPreviewImage()}" style="width: 100px; height: 100px; border: 1px solid lightgray;">{/if}
+				{if $point != null}
+					<img src="{$point->getPreviewImage()}" style="width: 100px; height: 100px;">
+				{/if}
 			</div>
 		</div>
 		<div class="row mt-4 mb-4">
@@ -128,11 +130,9 @@
 	</div>
 	<div class="form-group">
 		<label class="form-control-label">Content block body</label>
-		<div class="alert-danger p-2 mn-1">If you are <strong>copy/pasting</strong> from web, paste it as plain text (CTRL+<strong>SHIFT</strong>+V).<br>App can not work with web formatting. Format text you instead.</div>
+		<div class="alert-danger p-2 mn-1">If you are <strong>copy/pasting</strong> from web, paste it as plain text (CTRL+<strong>SHIFT</strong>+V).<br>App can not work with web formatting. Format text by yourself instead.</div>
 		{input content_block}
-		<span class="small alert-info p-1">For now, short description of this Point. If simple text editor is not working, you can use basic HTML to format text.
-			<br>HTML tags to format text: <span style="font-family: monospace">&lt;b&gt;</span> or <span style="font-family: monospace">&lt;strong&gt;</span> for <b>bold</b>, <span style="font-family: monospace">&lt;i&gt;</span> or <span style="font-family: monospace">&lt;em&gt;</span> for <i>italic</i> and <span style="font-family: monospace">&lt;br&gt;</span> for new line</span>.
-		{*You can use simple formatting html tags as &lt;i&gt;,&lt;b&gt;.*}
+
 	</div>
 	<div class="form-group">
 		<label class="form-control-label">Website link</label>

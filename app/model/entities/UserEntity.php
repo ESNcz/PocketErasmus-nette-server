@@ -29,12 +29,7 @@ class UserEntity{
 		self::ROLE_SECTION_ADMIN => 'section admin',
 		self::ROLE_SUPERADMIN => 'super admin'
 	];
-	
-	/**
-	 * @var UserLogic
-	 */
-	private $userLogic;
-	
+
 	/**
 	 * @var int
 	 * @ORM\Column(type="integer")
@@ -72,7 +67,7 @@ class UserEntity{
 	 * @ORM\Column(type="integer")
 	 */
 	protected $role;
-	
+
 	/**
 	 * @return int
 	 */

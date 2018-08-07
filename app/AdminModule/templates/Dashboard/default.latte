@@ -1,3 +1,9 @@
 {block content}
 <!-- content -->
-<!-- Dashboard Counts Section-->
+{if $isSuperadmin}
+	dfgdfg
+	{include 'superadmin.latte'}
+{else}
+	khjkhjk
+	{include 'sectionadmin.latte'}
+{/if}

@@ -28,6 +28,9 @@ services:
 	- App\Model\SubcFacade
 	- App\Model\UserFacade
 
+	# audit log facades
+	- App\Model\AuditLogUserFacade
+
 	# component factories
 	- App\AdminModule\Components\ICityFormFactory
 	- App\AdminModule\Components\IUniversityFormFactory
@@ -44,8 +47,10 @@ extensions:
 
 monolog:
 	name: app-server
-	handlers:
-		- Monolog\Handler\SyslogUdpHandler("logs.papertrailapp.com", 12561, 8)
+	# on local dev comment papertrail handlers
+	# on production enter valid papertrail app port!
+	#handlers:
+	#	- Monolog\Handler\SyslogUdpHandler("logs.papertrailapp.com", xxxx)
 	registerFallback: yes
 
 images:

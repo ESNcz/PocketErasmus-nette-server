@@ -127,7 +127,7 @@
 		<nav class="side-navbar">
 			<!-- Sidebar Header-->
 			<div class="sidebar-header d-flex align-items-center">
-				<div class="avatar"><img src="{$base_path}/data/users/test/batman.png" alt="..." class="img-fluid rounded-circle"></div>
+				<div class="avatar"><img src="{$base_path}/data/users/test/batman.png" alt="..." class="img-fluid"></div>
 				<div class="title">
 					<h1 class="h4">{$user_name}</h1>
 					<p><em>{$user_title}</em></p>
@@ -137,35 +137,53 @@
 			</div>
 			<!-- Sidebar Navidation Menus-->
 			{if $user->isInRole(2)} {* todo presunut konstanty do konfigu  *}
-			</ul><span class="heading">Superadmin</span>
-			<ul class="list-unstyled">
-				<li class="{$presenter->isLinkCurrent(':Admin:Dashboard:') ? active}"> <a n:href="Dashboard:default"><i class="icon-home"></i>Dashboard</a></li>
-				<li class="{$presenter->isLinkCurrent(':Admin:Pois:') ? active}"> <a n:href="Pois:default"> <i class="fa fa-map-marker"></i>POIs</a></li>
-				<li class="{$presenter->isLinkCurrent(':Admin:Subcategories:') ? active}"><a href="#subcategories" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-list-alt"></i>Subcategories</a>
-					<ul id="subcategories" class="collapse list-unstyled">
-						{foreach $categories as $cat_menu}
-						<li><a n:href="Subcategories:default $cat_menu->getId()">{$cat_menu->getName()}</a></li>
-						{/foreach}
-					</ul>
-				</li>
-				<li class="{$presenter->isLinkCurrent(':Admin:Categories:') ? active}"><a n:href="Categories:default"> <i class="fa fa-list"></i>Categories</a></li>
-				<li class="{$presenter->isLinkCurrent(':Admin:Cities:') ? active}"> <a n:href="Cities:default"> <i class="fa fa-building-o"></i>Cities</a></li>
-				<li class="{$presenter->isLinkCurrent(':Admin:Sections:') ? active}"> <a n:href="Sections:default"> <i class="fa fa-cubes"></i>Sections</a></li>
-				<li class="{$presenter->isLinkCurrent(':Admin:Users:') ? active}"> <a n:href="Users:default"> <i class="fa fa-users"></i>Users</a></li>
-				<li> <a href=""> <i class="fa fa-bar-chart"></i><strike>Statistics</strike></a></li>
-			</ul>
+				<!-- Superadmin menu -->
+				<span class="heading">Superadmin</span>
+				<ul class="list-unstyled">
+					<li class="{$presenter->isLinkCurrent(':Admin:Dashboard:') ? active}"> <a n:href="Dashboard:default"><i class="fa fa-home"></i>Dashboard</a></li>
+					<li class="{$presenter->isLinkCurrent(':Admin:Pois:') ? active}"> <a n:href="Pois:default"> <i class="fa fa-map-marker"></i>POIs</a></li>
+					<li class="{$presenter->isLinkCurrent(':Admin:Subcategories:') ? active}"><a href="#subcategories" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-list-alt"></i>Subcategories</a>
+						<ul id="subcategories" class="collapse list-unstyled">
+							{foreach $categories as $cat_menu}
+							<li><a n:href="Subcategories:default $cat_menu->getId()">{$cat_menu->getName()}</a></li>
+							{/foreach}
+						</ul>
+					</li>
+					<li class="{$presenter->isLinkCurrent(':Admin:Categories:') ? active}"><a n:href="Categories:default"> <i class="fa fa-list"></i>Categories</a></li>
+					<li class="{$presenter->isLinkCurrent(':Admin:Cities:') ? active}"> <a n:href="Cities:default"> <i class="fa fa-building-o"></i>Cities</a></li>
+					<li class="{$presenter->isLinkCurrent(':Admin:Sections:') ? active}"> <a n:href="Sections:default"> <i class="fa fa-cubes"></i>Sections</a></li>
+					<li class="{$presenter->isLinkCurrent(':Admin:Users:') ? active}"> <a n:href="Users:default"> <i class="fa fa-users"></i>Users</a></li>
+					<li> <a href=""> <i class="fa fa-bar-chart"></i><strike>Statistics</strike></a></li>
+				</ul>
 			{else}
+				<!-- Section admin menu -->
 				<span class="heading">Section</span>
 				<ul class="list-unstyled">
-					<li class="{$presenter->isLinkCurrent(':Admin:Dashboard:default') ? active}"> <a n:href="Dashboard:default"><i class="icon-home"></i>Dashboard</a></li>
+					<li class="{$presenter->isLinkCurrent(':Admin:Dashboard:default') ? active}"> <a n:href="Dashboard:default"><i class="fa fa-home"></i>Dashboard</a></li>
+					{* <li class="{$presenter->isLinkCurrent(':Admin:Dashboard:default') ? active}"> <a><i class="fa fa-bell"></i>Notifications</a></li> *}
 					<li class="{$presenter->isLinkCurrent(':Admin:Sections:detail') ? active}"> <a n:href="Sections:detail $userUniversityId"> <i class="fa fa-university"></i>Section</a></li>
-					<li class=""> <a href=""> <i class="fa fa-bar-chart"></i><strike>Statistics</strike><sup>Soon(tm)</sup></a></li>
+
 				</ul>
-				<span class="heading">Points</span>
+				{*<span class="heading">Home</span>
 				<ul class="list-unstyled">
-					<li class="{$presenter->isLinkCurrent(':Admin:Pois:') ? active}"><a n:href="Pois:default"> <i class="fa fa-list"></i>List of POI </a></li>
-					<li class="{$presenter->isLinkCurrent(':Admin:Pois:add') ? active}"> <a n:href="Pois:add"> <i class="fa fa-plus-circle"></i>Add point</a></li>
+					<li class="{$presenter->isLinkCurrent(':Admin:Pois:') ? active}"><a> <i class="fa fa-thumb-tack "></i>Pinned</a></li>
+					<li class="{$presenter->isLinkCurrent(':Admin:Pois:add') ? active}"> <a> <i class="fa fa-newspaper-o "></i>News</a></li>
+				</ul>*}
+				<span class="heading">Places</span>
+				<ul class="list-unstyled">
+					<li class="{$presenter->isLinkCurrent(':Admin:Pois:') ? active}"><a n:href="Pois:default"> <i class="fa fa-list"></i>List of places</a></li>
+					<li class="{$presenter->isLinkCurrent(':Admin:Pois:add') ? active}"> <a n:href="Pois:add"> <i class="fa fa-plus-circle"></i>Add place</a></li>
 				</ul>
+				{*<span class="heading">Guides</span>
+				<ul class="list-unstyled">
+					<li class="{$presenter->isLinkCurrent(':Admin:Pois:') ? active}"><a n:href="Pois:default"> <i class="fa fa-files-o"></i>List of Guides </a></li>
+					<li class="{$presenter->isLinkCurrent(':Admin:Pois:add') ? active}"> <a n:href="Pois:add"> <i class="fa fa-file-o"></i>Add Guide</a></li>
+				</ul>
+				<span class="heading">Events</span>
+				<ul class="list-unstyled">
+					<li class="{$presenter->isLinkCurrent(':Admin:Pois:') ? active}"><a n:href="Pois:default"> <i class="fa fa-calendar"></i>List of Events </a></li>
+					<li class="{$presenter->isLinkCurrent(':Admin:Pois:add') ? active}"> <a n:href="Pois:add"> <i class="fa fa-calendar-plus-o"></i>Add Guide</a></li>
+				</ul>*}
 			{/if}
 
 

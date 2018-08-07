@@ -15,8 +15,11 @@ use Nette\Application\UI\Form;
 
 class SectionsPresenter extends BaseAdminPresenter{
 
+	// todo doplnit logovanie user action
+
 	public function startup(){
 		parent::startup();
+		//$this->verifySuperAdminRole();
 		$this->template->presenter_name = 'Sections and universities';
 	}
 
@@ -25,12 +28,14 @@ class SectionsPresenter extends BaseAdminPresenter{
 	}
 
 	public function actionAdd(){
+		$this->verifySuperAdminRole();
 		$this->setView('edit');
 		$this->template->title = 'Add new university/section';
 		$this->template->uni = null;
 	}
 
 	public function actionEdit($id){
+		$this->verifySuperAdminRole();
 		/**
 		 * @var UniversityEntity
 		 */
@@ -42,6 +47,7 @@ class SectionsPresenter extends BaseAdminPresenter{
 	}
 
 	public function actionDelete($id, $confirmation){
+		$this->verifySuperAdminRole();
 		if(!is_numeric($id)){
 			$this->redirect('Sections:default');
 		}

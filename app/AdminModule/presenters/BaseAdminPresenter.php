@@ -109,4 +109,16 @@ class  BaseAdminPresenter extends BasePresenter {
 		return $this->pointFormFactory->create();
 	}
 
+	protected function verifySuperAdminRole(){
+		if($this->getUser()->getRoles()[0] != UserEntity::ROLE_SUPERADMIN){
+			$this->logger->addNotice('[USER] Tried to access superadmin pages.',[
+				'user_id' => $this->getUser()->getId(),
+				'user_name' => $this->getUser()->getIdentity()->data['name'],
+				'presenter action' => $this->getPresenter()->getName().':'.$this->getPresenter()->getAction(),
+
+			]);
+			$this->redirect('Dashboard:default');
+		}
+	}
+
 }

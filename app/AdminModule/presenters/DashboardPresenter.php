@@ -9,6 +9,7 @@
 namespace App\AdminModule\Presenters;
 
 
+use App\Model\AuditLogUserFacade;
 use App\Presenters\BasePresenter;
 use Tracy\Debugger;
 use Tracy\OutputDebugger;
@@ -18,11 +19,15 @@ class DashboardPresenter extends BaseAdminPresenter{
 	public function startup(){
 		parent::startup();
 		$this->template->presenter_name = 'Dashboard';
+		if($this->verifySuperAdminRole()){
+			$this->template->iSuperadmin = true;
+		}else{
+			$this->template->iSuperadmin = false;
+		}
 	}
 
 	public function actionTest(){
-
-		Debugger::dump($this->pointFacade->getEntity(1));
+		// test
 		$this->setView('default');
 	}
 	

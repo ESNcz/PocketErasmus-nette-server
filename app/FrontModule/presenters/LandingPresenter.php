@@ -8,6 +8,7 @@
 
 namespace App\FrontModule\Presenters;
 
+use App\Model\AuditLogUserFacade;
 use App\Presenters\BasePresenter;
 use Nette;
 use Nette\Application\UI\Form;
@@ -27,6 +28,8 @@ class LandingPresenter extends BasePresenter{
 
 
 	public function actionOut(){
+		$this->logger->addInfo('[USER] Signed out (logout)', ['user_id' => $this->getUser()->getId()]);
+		$this->logUser->log($this->getUser()->id, AuditLogUserFacade::USER_ACTION_SIGN_OUT);
 		$this->getUser()->logout();
 		$this->flashMessage('Odhlášení bylo úspěšné.');
 		$this->redirect(':Front:Landing:default');
@@ -49,7 +52,8 @@ class LandingPresenter extends BasePresenter{
 	public function signInFormSucceeded($form, $values){
 		try{
 			$this->getUser()->login($values->user_name,$values->psswd);
-			$this->logger->addInfo('[USER] Signed in (login)', ['user name' => $values->user_name]);
+			$this->logger->addInfo('[USER] Signed in (login)', ['user_name' => $values->user_name, 'user_id' => $this->getUser()->getId()]);
+			$this->logUser->log($this->getUser()->getId(), AuditLogUserFacade::USER_ACTION_SIGN_IN);
 			$this->redirect(':Admin:Dashboard:');
 		}catch(Nette\Security\AuthenticationException $e){
 			$this->flashMessage('Nesprávné přihlašovací jméno nebo heslo.','danger');

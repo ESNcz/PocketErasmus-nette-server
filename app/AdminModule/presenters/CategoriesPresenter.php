@@ -17,6 +17,8 @@ use Nette\Application\UI\Form;
 
 class CategoriesPresenter extends BaseAdminPresenter{
 
+	// todo doplnit logovanie user action
+
 	/**
 	 * @var CategoryEntity[]|ArrayCollection
 	 */
@@ -24,6 +26,7 @@ class CategoriesPresenter extends BaseAdminPresenter{
 
 	public function startup(){
 		parent::startup();
+		$this->verifySuperAdminRole();
 		$this->template->presenter_name = 'Categories';
 		$this->categories = $this->categoryFacade->getAllEntities();
 	}

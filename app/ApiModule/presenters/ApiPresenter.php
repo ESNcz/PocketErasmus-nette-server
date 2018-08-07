@@ -16,6 +16,7 @@ use App\Model\UniversityFacade;
 use App\Presenters\BasePresenter;
 use Nette;
 use Symfony\Component\Console\Output\Output;
+use TestHelper;
 use Tracy\Debugger;
 use Tracy\OutputDebugger;
 
@@ -158,9 +159,11 @@ class ApiPresenter extends BasePresenter{
 	}
 
 	public function actionHomepage(){
+		$test = new TestHelper();
+
 		// dummy data
 		$this->requested_data = [
-			'full_name' => 'Michael Hartman',
+			'full_name' => $test->__toString(),
 			'user_photo' => 'http://app2.esn-cz.cz/data/sections/test/app_welcome.jpg',
 			'esn_section' => 'President of Erasmus Student Network Czech Republic',
 			'welcome_description' => "Dear exchange students, it is my pleasure to welcome you all to the beautiful land of the Czech Republic. During the next few months, you will meet lots of great people, build life long lasting friendships and discover amazing places. The volunteers from ESN are here to help you enjoy it, and trust me - you are going to have the time of your life. Cheers!",

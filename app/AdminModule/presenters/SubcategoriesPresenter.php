@@ -14,6 +14,8 @@ use Nette\Application\UI\Form;
 
 class SubcategoriesPresenter extends BaseAdminPresenter{
 
+	// todo doplnit logovanie user action
+
 	/**
 	 * @var SubcategoryEntity[]|ArrayCollectionction
 	 */
@@ -23,6 +25,7 @@ class SubcategoriesPresenter extends BaseAdminPresenter{
 
 	public function startup(){
 		parent::startup();
+		$this->verifySuperAdminRole();
 		$this->template->presenter_name = 'Subcategories';
 	}
 

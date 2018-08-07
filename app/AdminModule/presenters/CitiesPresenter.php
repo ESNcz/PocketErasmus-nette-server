@@ -15,8 +15,11 @@ use Tracy\Debugger;
 
 class CitiesPresenter extends BaseAdminPresenter{
 
+	// todo doplnit logovanie user action
+
 	public function startup(){
 		parent::startup();
+		$this->verifySuperAdminRole();
 		$this->template->presenter_name = 'Cities';
 	}
 

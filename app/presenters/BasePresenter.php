@@ -66,6 +66,11 @@ class BasePresenter extends Nette\Application\UI\Presenter{
 	 * @var Model\UserFacade @inject
 	 */
 	public $userFacade;
+
+	/**
+	 * @var Model\AuditLogUserFacade @inject
+	 */
+	public $logUser;
 	
 	public $base_path;
 
